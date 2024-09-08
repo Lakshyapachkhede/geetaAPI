@@ -1,7 +1,7 @@
 const Shlok = require('../models/shlok.model');
 
 async function getAllShloks(req, res) {
-    const allShloks = await Shlok.find();
+    const allShloks = await Shlok.find().sort({number: 1});
     return res.json(allShloks)
 }
 
@@ -23,7 +23,7 @@ async function getShlokByNumber(req, res) {
 async function getShlokByChapter(req, res){
     const chapter = parseInt(req.params.chapter, 10);
     try{
-        const shloks = await Shlok.find({chapter: chapter});
+        const shloks = await Shlok.find({chapter: chapter}).sort({number: 1});
         if (!shloks){
             return res.status(404).json({ message: 'shloks for chapter not found' });
         }

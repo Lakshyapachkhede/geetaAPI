@@ -1,7 +1,7 @@
 const Adhyay = require('../models/adhyay.model');
 
 async function getAllAdhyay(req, res) {
-    const allAdhyay = await Adhyay.find();
+    const allAdhyay = await Adhyay.find().sort({number: 1});
     return res.json(allAdhyay)
 }
 
