@@ -1,7 +1,7 @@
 const Adhyay = require('../models/adhyay.model');
 
 async function getAllAdhyay(req, res) {
-    const allAdhyay = await Adhyay.find().sort({number: 1});
+    const allAdhyay = await Adhyay.find().sort({number: 1}).select('name nameMeaning summary number hindiNumber -_id');
     return res.json(allAdhyay)
 }
 
@@ -10,7 +10,7 @@ async function getAdhyayByNumber(req, res) {
     const number = parseInt(req.params.number, 10);
 
     try {
-            const adhyay = await Adhyay.findOne({ number: number});
+            const adhyay = await Adhyay.findOne({ number: number}).select('name nameMeaning summary number hindiNumber -_id');
             if (!adhyay){
                 return res.status(404).json({ message: 'adhyay not found' });
             }
