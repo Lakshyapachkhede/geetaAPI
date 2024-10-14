@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Geeta API Guide provides details on how to use the Bhagavad Gita API to retrieve chapters and shlokas in Hindi.">
+    <title>Geeta API Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        nav {
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .title {
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            width: 100%;
+        }
+        footer p a{
+          color: white;
+          text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto 60px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #4CAF50;
+        }
+        pre {
+            background-color: #e8e8e8;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <div class="title">Geeta API</div>
+    <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#endpoints">API Endpoints</a></li>
+        <li><a href="https://lakshyapachkhede.github.io/Lakshyapachkhede/">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Geeta API Guide</h1>
+    <p>The Geeta API provides access to chapters and shlokas from the Bhagavad Gita in Hindi. This guide explains how to use the API endpoints to retrieve the chapter details and individual shlokas.</p>
+    
+    <section id="features">
+        <h2>Features</h2>
+        <ul>
+            <li>Retrieve a list of all chapters with their Hindi names, meanings, and summaries.</li>
+            <li>Get details for a specific chapter in Hindi.</li>
+            <li>Fetch all shlokas from a given chapter in Hindi.</li>
+            <li>Retrieve a specific shloka by chapter and verse in Hindi with its meaning.</li>
+        </ul>
+    </section>
+
+    <section id="endpoints">
+        <h2>API Endpoints</h2>
+
+        <h3>1. List All Chapters</h3>
+        <p>Returns a list of all chapters in the Bhagavad Gita, including the chapter name, its meaning, and a brief summary in Hindi.</p>
+        <p><strong>Request:</strong></p>
+        <pre><code>GET /adhyay/</code></pre>
+        <p><strong>Response Example:</strong></p>
+        <pre><code>
+          
+[{
+  "chapter": 1,
+  "name": "अर्जुन विषाद योग",
+  "meaning": "अर्जुन के विषाद का योग",
+  "summary": "इस अध्याय में अर्जुन युद्ध के मैदान में शोक और भ्रम से घिर जाते हैं...",
+  "hindiNumber": "१"
+},
+{
+  "chapter": 2,
+  "name": "सांख्ययोग",
+  "meaning": "गीता का सार",
+  "summary": "भगवद गीता का दूसरा अध्याय सांख्य योग है। यह अध्याय भगवद गीता का...",
+  "hindiNumber": "२"
+}]
+        </code></pre>
+
+        <h3>2. Get Details of a Specific Chapter</h3>
+        <p>Returns the details of the specified chapter in Hindi.</p>
+        <p><strong>Request:</strong></p>
+        <pre><code>GET /adhyay/{chapter_number}</code></pre>
+        <p><strong>Response Example:</strong></p>
+        <pre><code>
+{
+  "chapter": 1,
+  "name": "अर्जुन विषाद योग",
+  "meaning": "अर्जुन के विषाद का योग",
+  "summary": "इस अध्याय में अर्जुन युद्ध के मैदान में शोक और भ्रम से घिर जाते हैं...",
+  "hindiNumber": "१"
+}
+        </code></pre>
+
+        <h3>3. List All Shlokas from a Chapter</h3>
+        <p>Returns a list of all shlokas from the specified chapter in Hindi.</p>
+        <p><strong>Request:</strong></p>
+        <pre><code>GET /shlok/{chapter_number}</code></pre>
+        <p><strong>Response Example:</strong></p>
+        <pre><code>
+[{
+  "text": "धृतराष्ट्र उवाच |\nधर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः...",
+  "meaning": "धृतराष्ट्र बोले- हे संजय! धर्मभूमि कुरुक्षेत्र में...",
+  "chapter": 1,
+  "shlokNo": "१",
+  "number": 1
+},
+{
+  "text": "सञ्जय उवाच ।\nदृष्ट्वा तु पाण्डवानीकं व्यूढं दुर्योधनस्तदा...",
+  "meaning": "संजय बोले- उस समय राजा दुर्योधन ने...",
+  "chapter": 1,
+  "shlokNo": "२",
+  "number": 2
+}]
+        </code></pre>
+
+        <h3>4. Get a Specific Shloka by Chapter and Verse</h3>
+        <p>Returns a specific shloka and its meaning in Hindi.</p>
+        <p><strong>Request:</strong></p>
+        <pre><code>GET /shlok/{chapter_number}/{verse_number}</code></pre>
+        <p><strong>Response Example:</strong></p>
+        <pre><code>
+{
+  "text": "धृतराष्ट्र उवाच |\nधर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः...",
+  "meaning": "धृतराष्ट्र बोले- हे संजय! धर्मभूमि कुरुक्षेत्र में...",
+  "chapter": 1,
+  "shlokNo": "१",
+  "number": 1
+}
+        </code></pre>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>Created by <a href="https://lakshyapachkhede.github.io/Lakshyapachkhede/">Lakshya Pachkhede</a></p>
+</footer>
+
+</body>
+</html>
